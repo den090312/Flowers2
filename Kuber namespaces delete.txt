@@ -1,0 +1,2 @@
+# Получить и удалить все несистемные namespace'ы
+kubectl get namespace --no-headers | Where-Object { $_ -notmatch "default|kube-system|kube-public|kube-node-lease|local-path-storage" } | ForEach-Object { $_.Split()[0] } | ForEach-Object { kubectl delete namespace $_ }
